@@ -40,7 +40,11 @@ projects:
 
 footer: customize your footer text
 ---
-
+<style>
+  .vp-blog-hero-image {
+    border-radius: 50%;
+  }
+</style>
 This is a blog home page demo.
 
 To use this layout, you should set both `layout: BlogHome` and `home: true` in the page front matter.
