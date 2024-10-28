@@ -20,15 +20,15 @@ jobs:
           # if your docs needs submodules, uncomment the following line
           # submodules: true
 
+      - name: Setup pnpm Package
+        uses: pnpm/action-setup@v4
+    
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: pnpm
 
-      - name: Setup pnpm Package
-        uses: pnpm/action-setup@v4
-  
       - name: Install Deps
         run: |
           corepack enable
