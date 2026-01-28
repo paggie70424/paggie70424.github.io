@@ -20,30 +20,22 @@ jobs:
           # if your docs needs submodules, uncomment the following line
           # submodules: true
 
-      - name: Setup pnpm Package
-        uses: pnpm/action-setup@v4
-    
-      - name: Setup Node.js
+      - name: Setup Node.js Environment
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: pnpm
+          node-version: 22
+          cache: 'npm'
 
-      - name: Install Deps
-        run: |
-          corepack enable
-          pnpm install --frozen-lockfile
-
-      - name: Build Docs
+      - name: Build Blog
         env:
-          NODE_OPTIONS: --max_old_space_size=8192
+          NODE_OPTIONS: --max_old_space_size=8692
+          VUEPRESS_SHIKI_DISABLE: true             # disable shiki for unused languages
         run: |-
-          pnpm run docs:build
-          > src/.vuepress/dist/.nojekyll
+          make build-astro
 
       - name: Deploy Docs
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           # Deploy Docs
           branch: gh-pages
-          folder: src/.vuepress/dist
+          folder: ./dist

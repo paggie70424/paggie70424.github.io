@@ -1,0 +1,24 @@
+{
+	"folders": [
+		{
+			"name": "astro-blog-main",
+			"path": ".."
+		},
+		{
+			"name": "@jet-w.astro-blog",
+			"path": "../modules/@jet-w.astro-blog"
+		},
+		{
+			"name": "@jet-w.astro-blog-cli",
+			"path": "../modules/@jet-w.astro-blog-cli"
+		},
+		{
+			"name": "seape_blog",
+			"path": "../modules/seape_blog"
+		},
+		{
+			"path": "../modules/jet-w_blog"
+		}
+	],
+	"settings": {}
+}
