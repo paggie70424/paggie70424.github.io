@@ -1,7 +1,7 @@
 <template>
   <div v-if="showBirthday" class="birthday-overlay">
     <Birthday
-      title="生日快乐"
+      title="祝Paggie生日快乐"
       message1="大好年华"
       message2="前程似锦"
       message3="生日快乐"
