@@ -34,7 +34,7 @@ export const sidebarConfig: SidebarConfig = {
     // },
 
     // 分隔符
-    { type: 'divider', title: '技术内容' },
+    { type: 'divider', title: 'Technology' },
 
     // // 扫描技术文档目录
     // {

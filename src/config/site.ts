@@ -12,7 +12,7 @@ import { menu } from './menu';
  */
 export const siteConfig: SiteConfig = {
   title: "Paggie's Blog",
-  description: 'A FrontEnd programmer',
+  description: 'A Data Engineer',
   author: 'Paggie',
   email: '',
   avatar: '/images/paggie.png',

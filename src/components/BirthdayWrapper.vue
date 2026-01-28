@@ -1,5 +1,5 @@
 <template>
-  <div v-if="showBirthday" class="birthday-wrapper">
+  <div v-if="showBirthday" class="birthday-overlay">
     <Birthday
       title="生日快乐"
       message1="大好年华"
@@ -8,14 +8,9 @@
       customWish="愿你的每一天都充满阳光与欢笑，愿所有美好都如期而至！岁岁年年，万事胜意！"
       cursorText="Paggie"
     />
-    <!-- Exit button -->
-    <button
-      class="exit-button"
-      @click="exitBirthday"
-      title="进入博客"
-    >
-      <span class="exit-icon">✕</span>
-      <span class="exit-text">进入博客</span>
+    <button class="birthday-exit-btn" @click="exitBirthday">
+      <span>✕</span>
+      <span>进入博客</span>
     </button>
   </div>
 </template>
@@ -27,39 +22,43 @@ import Birthday from './Birthday.vue';
 const showBirthday = ref(false);
 
 onMounted(() => {
-  // Check if today is January 28th
   const today = new Date();
   const month = today.getMonth() + 1;
   const day = today.getDate();
 
+  // Show birthday page on January 28th
   if (month === 1 && day === 28) {
     showBirthday.value = true;
-    // Hide the main page content
-    document.body.style.overflow = 'hidden';
   }
 });
 
 function exitBirthday() {
   showBirthday.value = false;
-  document.body.style.overflow = '';
 }
 </script>
 
-<style scoped>
-.birthday-wrapper {
+<style>
+.birthday-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 9999;
+  z-index: 99999;
+  background: #000;
 }
 
-.exit-button {
+.birthday-overlay .birthday-container {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+}
+
+.birthday-exit-btn {
   position: fixed;
   top: 20px;
   right: 20px;
-  z-index: 10000;
+  z-index: 100000;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -73,30 +72,10 @@ function exitBirthday() {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.exit-button:hover {
+.birthday-exit-btn:hover {
   background: rgba(255, 255, 255, 0.3);
   transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-}
-
-.exit-icon {
-  font-size: 16px;
-  line-height: 1;
-}
-
-.exit-text {
-  white-space: nowrap;
-}
-
-@media (max-width: 768px) {
-  .exit-button {
-    top: 10px;
-    right: 10px;
-    padding: 10px 16px;
-    font-size: 12px;
-  }
 }
 </style>
