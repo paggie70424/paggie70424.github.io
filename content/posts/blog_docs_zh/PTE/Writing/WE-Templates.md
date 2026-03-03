@@ -1,5 +1,5 @@
 ---
-title: Writing Essay - Template
+title: Writing Essay - Templates
 date: 2024-07-31
 icon: circle-dot
 author: Haiyue
