@@ -1,14 +1,21 @@
 /**
  * Footer Configuration
  *
- * Configure footer links, copyright, and display options
+ * Configure footer links, copyright, and display options.
+ *
+ * NOTE: For multi-language support, language-specific settings
+ * (quickLinksTitle, quickLinks, contactTitle) should be configured
+ * in astro.config.mjs under localeConfigs.
+ * This file contains shared settings that are not language-specific.
  */
 
 import type { FooterConfig } from '@jet-w/astro-blog';
 import { socialLinks } from './social';
 
 /**
- * Footer configuration
+ * Footer configuration (shared settings)
+ *
+ * Language-specific quickLinks and titles are configured in astro.config.mjs
  */
 export const footerConfig: FooterConfig = {
   quickLinksTitle: '快速链接',

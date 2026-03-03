@@ -10,14 +10,35 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 // Import plugins and integration from @jet-w/astro-blog
-import { astroBlog } from '@jet-w/astro-blog';
+import { astroBlog, defineI18nConfig } from '@jet-w/astro-blog';
+import { remarkProtectCode, rehypeRestoreCode } from '@jet-w/astro-blog/plugins/remark-protect-code.mjs';
 import { remarkContainers } from '@jet-w/astro-blog/plugins/remark-containers.mjs';
 import { remarkMermaid } from '@jet-w/astro-blog/plugins/remark-mermaid.mjs';
 import { rehypeCleanContainers } from '@jet-w/astro-blog/plugins/rehype-clean-containers.mjs';
 import { rehypeTabs } from '@jet-w/astro-blog/plugins/rehype-tabs.mjs';
 import { rehypeRelativeLinks } from '@jet-w/astro-blog/plugins/rehype-relative-links.mjs';
 
+// Import locale-specific configurations
+import { zhCNConfig } from './src/config/locales/zh-CN';
+import { enConfig } from './src/config/locales/en';
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+// i18n configuration - supports any number of languages
+const i18nConfig = defineI18nConfig({
+  defaultLocale: 'zh-CN',
+  locales: [
+    { code: 'zh-CN', name: '中文', htmlLang: 'zh-CN', dateLocale: 'zh-CN' },
+    { code: 'en', name: 'English', htmlLang: 'en', dateLocale: 'en-US' },
+  ],
+  routing: {
+    prefixDefaultLocale: false, // en (default) uses /posts, zh-CN uses /zh-CN/posts
+  },
+  localeConfigs: {
+    'zh-CN': zhCNConfig,
+    'en': enConfig,
+  },
+});
 
 // https://astro.build/config
 export default defineConfig({
@@ -30,10 +51,12 @@ export default defineConfig({
         '@': path.resolve(__dirname, 'node_modules/@jet-w/astro-blog/src'),
         '@blog': path.resolve(__dirname, 'src'),
       },
+      // Help Vite resolve peer dependencies from injected routes
+      dedupe: ['@astrojs/rss', 'astro']
     },
   },
   integrations: [
-    astroBlog(),
+    astroBlog({ i18n: i18nConfig }),
     vue(),
     mdx(),
     tailwind({
@@ -42,9 +65,10 @@ export default defineConfig({
   ],
   markdown: {
     remarkPlugins: [
-      remarkDirective,
+      remarkProtectCode,  // Must run FIRST to protect code blocks
       remarkMath,
-      remarkContainers,
+      remarkDirective,    // Parse ::: syntax into directive nodes
+      remarkContainers,   // Handle container syntax (works with both plain text and directive nodes)
       remarkMermaid,
     ],
     rehypePlugins: [
@@ -53,6 +77,7 @@ export default defineConfig({
       rehypeCleanContainers,
       rehypeTabs,
       rehypeRelativeLinks,
+      rehypeRestoreCode,  // Must run LAST to restore ::: in code blocks
     ],
     shikiConfig: {
       theme: 'github-dark',
@@ -64,5 +89,5 @@ export default defineConfig({
   base: '/',
   build: {
     assets: 'assets'
-  }
+  },
 });

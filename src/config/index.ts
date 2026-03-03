@@ -13,7 +13,7 @@
 // Re-export all configurations
 export { siteConfig, defaultSEO } from './site';
 export { sidebarConfig } from './sidebar';
-export { socialLinks } from './social';
+export { socialLinks} from './social';
 export { footerConfig } from './footer';
 
 // Re-export defaultIcons and types from the package (required by package components)

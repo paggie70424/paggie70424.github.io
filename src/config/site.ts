@@ -5,24 +5,47 @@
  */
 
 import type { SiteConfig } from '@jet-w/astro-blog';
-import { menu } from './menu';
 
 /**
  * Site configuration
  */
 export const siteConfig: SiteConfig = {
-  title: "Paggie's Blog",
-  description: 'A Data Engineer',
-  author: 'Paggie',
-  email: '',
-  avatar: '/images/paggie.png',
-  social: {
-    github: 'https://github.com/paggie70424',
-    twitter: '',
-    linkedin: '',
-    email: ''
+  title: "Jet's Blog",
+  description: '',
+  author: 'Jet',   
+  layout: {
+    contentWidth: 'wide'  // 或 'narrow', '900px', '80%' 等
   },
-  menu
+  email: 'unisa.dady@gmail.com',
+  avatar: '/images/avatar.png',
+  social: {
+    github: 'https://github.com/jet-w',
+    twitter: '',
+    linkedin: 'https://www.linkedin.com/in/jet-w/',
+    email: 'mailto:unisa.dady@gmail.com'
+  },
+  menu: [
+    {
+      name: '首页',
+      href: '/',
+      icon: 'home'
+    },
+    {
+      name: '博客教学',
+      href: '/posts/blog_docs',
+      icon: 'posts'
+    },
+    {
+      name: '演示',
+      href: '/slides',
+      icon: 'slides'
+    },
+    {
+      name: '关于',
+      href: '/about',
+      icon: 'about'
+    }
+  ]
 };
 
 /**

@@ -1,5 +1,5 @@
 {
-  "name": "test-blog",
+  "name": "my-blog",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -11,10 +11,10 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.12",
-    "@astrojs/rss": "^4.0.15",
+    "@astrojs/rss": "^4.0.14",
     "@astrojs/tailwind": "^5.1.3",
     "@astrojs/vue": "^5.0.6",
-    "@jet-w/astro-blog": "^0.1.6",
+    "@jet-w/astro-blog": "^0.2.27",
     "@tailwindcss/typography": "^0.5.15",
     "astro": "^5.14.1",
     "echarts": "^6.0.0",
